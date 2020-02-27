@@ -18,7 +18,7 @@ app.get("/screams", (req, res) => {
     .catch(err => console.error(err));
 })
 
-app.post("/screams", (req, res) => {
+app.post("/scream", (req, res) => {
     const newScream = {
         body: req.body.body,
         userHandle: req.body.userHandle,
