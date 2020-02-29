@@ -61,6 +61,11 @@ app.post("/scream", (req, res) => {
     })
 });
 
+const isEmpty = string => {
+    if(string.trim() === "") return true;
+    else return false;
+}
+
 // Signup route
 app.post("/signup",(req,res)=>{
     const newUser = {
@@ -70,6 +75,17 @@ app.post("/signup",(req,res)=>{
         handle: req.body.handle,
     }
 
+    let errors = {};
+
+    if(isEmpty(newUser.email)) errors.email = "must not be empty";
+
+    if(isEmpty(newUser.password)) errors.password = "must not be empty";
+    
+    if(newUser.password !== newUser.confirmPassword) errors.confirmPassword = "passwords must match";
+
+    if(isEmpty(newUser.handle)) errors.handle = "must not be empty";
+
+    // validate data
     let token, userId;
     db.doc(`/users/${newUser.handle}`)
         .get()
