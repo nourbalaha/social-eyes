@@ -1,0 +1,38 @@
+.post{
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0px 5px 5px 1px rgba(0, 0, 0, 0.1);
+    width: 50vw;
+
+    .post-title{
+        display: flex;
+        justify-content: space-between;
+        .post-title-timestamp{
+            font-size: small;
+            color: #6B757E;
+        }
+        .post-user-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            .post-title-username{
+                font-size: small;
+                font-weight: bold;
+                margin-left: 10px;
+                color: #6B757E;
+            }
+            .post-title-icon{
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+            }
+        }
+    }
+    .post-body{
+        margin-top: 20px;
+        margin-left: 25px;
+        font-size: medium;
+    }
+}
