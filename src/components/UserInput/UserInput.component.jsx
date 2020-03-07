@@ -1,6 +1,5 @@
 import React from 'react';
 import './UserInput.style.scss';
-// import { ReactComponent as Logo } from '../../assets/user.svg'
 import avatar from '../../assets/avatar.png'
 
 function UserInput() {
