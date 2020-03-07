@@ -1,0 +1,14 @@
+.app{
+  display: flex;
+  height: 100vh;
+}
+
+.main{
+  flex: 1;
+  background-color: #FFFFFF;
+}
+
+.nav{
+  width: 90px;
+  background-color: #F8F9FA;
+}
