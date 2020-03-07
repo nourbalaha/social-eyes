@@ -1,0 +1,25 @@
+.app{
+  display: flex;
+  height: 100vh;
+
+  .main{
+    flex: 1;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .posts{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  .nav{
+    width: 90px;
+    background-color: #F8F9FA;
+  }
+}
