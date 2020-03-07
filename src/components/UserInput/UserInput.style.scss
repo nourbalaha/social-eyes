@@ -3,9 +3,10 @@
     width: 60vw;
     justify-content: center;
     align-items: center;
+    margin: 20px;
     .user-input-image{
-        width: 80px;
-        height: 80px;
+        width: 90px;
+        height: 90px;
         border-radius: 50%;
     }
     .user-input-text{
@@ -18,11 +19,11 @@
         font-size: large;
     }
     .user-input-button{
-        width: 100px;
-        height: 50px;
+        padding: 15px;
         color: #FFFFFF;
         background-color: #FFDF74;
         font-size: large;
+        font-weight: bold;
         border: none;
         border-radius: 50px;
     }
