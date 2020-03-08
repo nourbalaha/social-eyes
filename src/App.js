@@ -15,7 +15,11 @@ function App() {
           <Post />
         </div>
       </main>
-      <nav className="nav"></nav>
+      <nav className="nav">
+        <span><i className="nav-item fa fa-user-circle"></i></span>
+        <span><i className="nav-item fa fa-cog"></i></span>
+        <span><i className="nav-item fa fa-sign-out"></i></span>
+      </nav>
     </div>
   );
 }
