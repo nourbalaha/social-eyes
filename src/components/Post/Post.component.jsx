@@ -18,7 +18,11 @@ function Post() {
                 </div>
             </div>
             <div className="post-body">
-                <p>Hello there, this is me Nour!</p>
+                <span>Hello there, this is me Nour!</span>
+                <div className="post-like-container">
+                    <span className="post-like"><i className="fa fa-heart"></i></span>
+                    <span className="post-like-count">0</span>
+                </div>
             </div>
         </div>
     )

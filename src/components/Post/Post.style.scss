@@ -1,9 +1,9 @@
 .post{
     border-radius: 10px;
     padding: 20px;
-    margin: 15px 0;
-    box-shadow: 0px 5px 5px 1px rgba(0, 0, 0, 0.1);
+    margin: 25px 0;
     width: 50vw;
+    box-shadow: 0px 10px 20px -9px rgba(0,0,0,.2);
 
     .post-title{
         display: flex;
@@ -58,5 +58,27 @@
         margin-top: 20px;
         margin-left: 25px;
         font-size: medium;
+        display: flex;
+        flex-direction: column;
+        .post-like-container{
+            justify-self: center;
+            align-self: flex-end;
+            background-color: #FFFFFF;
+            padding: 5px 10px;
+            position: relative;
+            bottom: -32px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px -9px rgba(0,0,0,0.2);
+            .post-like{
+                color: #FF0000;
+                padding: 5px;
+                cursor: pointer;
+            }
+            .post-like-count{
+                color: #FF0000;
+                padding: 5px;
+            }
+        }
     }
+    
 }
