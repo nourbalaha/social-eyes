@@ -11,7 +11,11 @@ function Post() {
                     <img className="post-title-icon" src={Logo} alt="post-title-icon" />
                     <span className="post-title-username">Nour Balaha</span>
                 </div>
-                <span className="post-title-timestamp">14h ago</span>
+                <div className="post-title-config">
+                    <span className="post-title-timestamp">14h ago</span>
+                    <span className="post-title-edit"><i className="fa fa-pencil"></i></span>
+                    <span className="post-title-delete"><i className="fa fa-trash"></i></span>
+                </div>
             </div>
             <div className="post-body">
                 <p>Hello there, this is me Nour!</p>
