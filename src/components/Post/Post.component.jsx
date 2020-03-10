@@ -3,7 +3,12 @@ import './Post.style.scss';
 
 import Logo from '../../assets/avatar.png';
 
+import moment from "moment";
+
 function Post({ id, author, message, likes, createdAt }) {
+    const date = new Date(createdAt);
+    let fromNow = moment([date.getFullYear(), date.getMonth(), date.getDate()]).fromNow()
+
     return (
         <div className="post">
             <div className="post-title">
@@ -12,7 +17,7 @@ function Post({ id, author, message, likes, createdAt }) {
                     <span className="post-title-username">{author}</span>
                 </div>
                 <div className="post-title-config">
-                    <span className="post-title-timestamp">14h ago</span>
+                    <span className="post-title-timestamp">{fromNow}</span>
                     <span className="post-title-edit"><i className="fa fa-pencil"></i></span>
                     <span className="post-title-delete"><i className="fa fa-trash"></i></span>
                 </div>
