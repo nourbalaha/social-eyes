@@ -2,12 +2,21 @@ import React from 'react'
 
 import Post from '../Post/Post.component'
 
-function Posts() {
+function Posts({ posts }) {
+  const keys = Object.keys(posts);
+  
     return (
         <div className="posts">
-          <Post />
-          <Post />
-          <Post />
+          {
+            keys.map(
+              post=><Post 
+                id={posts[post]["postId"]} 
+                author={posts[post]["author"]} 
+                message={posts[post]["message"]} 
+                likes={posts[post]["likes"]} 
+                createdAt={posts[post]["createdAt"]} />
+              )
+          }
         </div>
     )
 }

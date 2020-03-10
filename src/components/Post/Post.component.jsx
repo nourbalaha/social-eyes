@@ -3,13 +3,13 @@ import './Post.style.scss';
 
 import Logo from '../../assets/avatar.png';
 
-function Post() {
+function Post({ id, author, message, likes, createdAt }) {
     return (
         <div className="post">
             <div className="post-title">
                 <div className="post-user-container">
                     <img className="post-title-icon" src={Logo} alt="post-title-icon" />
-                    <span className="post-title-username">Nour Balaha</span>
+                    <span className="post-title-username">{author}</span>
                 </div>
                 <div className="post-title-config">
                     <span className="post-title-timestamp">14h ago</span>
@@ -18,10 +18,10 @@ function Post() {
                 </div>
             </div>
             <div className="post-body">
-                <span>Hello there, this is me Nour!</span>
+                <span>{message}</span>
                 <div className="post-like-container">
                     <span className="post-like"><i className="fa fa-heart"></i></span>
-                    <span className="post-like-count">0</span>
+                    <span className="post-like-count">{likes.length}</span>
                 </div>
             </div>
         </div>
