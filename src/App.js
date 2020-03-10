@@ -1,16 +1,20 @@
 import React from 'react';
 import './App.scss';
+import { Switch, Route } from 'react-router-dom';
 
-import UserInput from './components/UserInput/UserInput.component';
-import Posts from './components/Posts/Posts.component';
 import Navbar from './components/Navbar/Navbar.component';
+
+import Profile from './pages/Profile/Profile.page'
 
 function App() {
   return (
     <div className="app">
       <main className="main">
-        <UserInput />
-        <Posts />
+        <Switch>
+          <Route exact path="/" component={Profile} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/profile/:id" component={Profile} />
+        </Switch>
       </main>
       <Navbar />
     </div>
