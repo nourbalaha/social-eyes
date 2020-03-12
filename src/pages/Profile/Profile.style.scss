@@ -1,12 +1,14 @@
 .profile-page{
-    flex: 1;
     background-color: #FFFFFF;
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
     .profile-page-right{
         flex: 3;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
     }
     .profile-page-left{
@@ -15,7 +17,47 @@
         background-color: #F8F9FA;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        .profile-page-left-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 25px;
+            .profile-page-left-image{
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                border: 3px solid white; 
+                margin: 30px;
+            }
+            .profile-page-left-user-ref{
+                font-size: 32px;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            .profile-page-left-description{
+                font-size: 20px;
+                text-align: center;
+                color: #555555;
+                margin-bottom: 30px;
+            }
+            .profile-page-left-posts-likes-container{
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+                .profile-page-left-likes{
+                    // color: #333333;
+                    font-size: 16px;
+                }
+                .profile-page-left-posts{
+                    // color: #333333;
+                    font-size: 16px;
+                }
+            }
+        }
     }
   }
