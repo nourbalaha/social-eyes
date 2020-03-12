@@ -11,8 +11,15 @@ function Profile() {
     const id = "1";
     return (
         <div className="profile-page">
-            <UserInput />
-            <Posts posts={mock_data["users"][id]["posts"]} />
+            <div className="profile-page-left">
+                <span>{mock_data["users"][id].userRef}</span>
+                <span>{mock_data["users"][id].email}</span>
+                <span>{mock_data["users"][id].description}</span>
+            </div>
+            <div className="profile-page-right">
+                <UserInput />
+                <Posts posts={mock_data["users"][id]["posts"]} />
+            </div>
         </div>
     )
 }
