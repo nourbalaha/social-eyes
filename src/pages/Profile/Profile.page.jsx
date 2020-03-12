@@ -15,6 +15,9 @@ function Profile() {
                 <span>{mock_data["users"][id].userRef}</span>
                 <span>{mock_data["users"][id].email}</span>
                 <span>{mock_data["users"][id].description}</span>
+                <span>Edit description <i className="fa fa-pencil"></i></span>
+                <span>{`Likes: ${mock_data["users"][id].likes.length}`}</span>
+                <span>{`Posts: ${Object.keys(mock_data["users"][id].posts).length}`}</span>
             </div>
             <div className="profile-page-right">
                 <UserInput />
