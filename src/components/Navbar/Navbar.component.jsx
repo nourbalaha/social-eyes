@@ -1,13 +1,14 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom'
 import './Navbar.style.scss';
 
 import Owl from '../../assets/owl.png'
 
-function Navbar() {
+function Navbar({ history }) {
     return (
         <nav className="navbar">
             <div className="navbar-icons">
-                <span><i className="nav-item fa fa-user-circle"></i></span>
+                <span onClick={()=>history.push("profile")}><i className="nav-item fa fa-user-circle"></i></span>
                 <span><i className="nav-item fa fa-home"></i></span>
                 <span><i className="nav-item fa fa-plus-circle"></i></span>
                 <span><i className="nav-item fa fa-cog"></i></span>
@@ -18,4 +19,4 @@ function Navbar() {
     )
 }
 
-export default Navbar;
+export default withRouter(Navbar);
