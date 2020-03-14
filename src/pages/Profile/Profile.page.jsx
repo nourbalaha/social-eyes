@@ -26,7 +26,7 @@ function Profile() {
             </div>
             <div className="profile-page-right">
                 <UserInput />
-                <Posts posts={mock_data["users"][id]["posts"]} />
+                <Posts />
             </div>
         </div>
     )
