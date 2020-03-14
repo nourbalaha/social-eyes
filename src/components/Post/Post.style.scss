@@ -60,6 +60,18 @@
         font-size: medium;
         display: flex;
         flex-direction: column;
+        .message-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .post-message{
+                border: none;
+                font-size: 16px;
+                margin-right: 10px;
+                background-color: #FFFFFF;
+                flex: 1;
+            }
+        }
         .post-like-container{
             justify-self: center;
             align-self: flex-end;
