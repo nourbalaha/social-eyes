@@ -8,7 +8,8 @@ export const mock_data = {
             description: "Hello, this is Nour. A React developer in Japan",
             openProfile: true,
             created_at: 1583856395871,
-            friends: [],
+            followers: [],
+            followeing: [],
             likes: ["11","12"],
             posts: {
                 "11": {
@@ -42,7 +43,8 @@ export const mock_data = {
             description: "Hello, this is Mohamad. A React developer in Japan",
             openProfile: true,
             created_at: 1583857260092,
-            friends: [],
+            followers: [],
+            followeing: [],
             likes: ["11","13","15"],
             posts: {
                 "14": {
