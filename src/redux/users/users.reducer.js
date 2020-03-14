@@ -32,11 +32,15 @@ function usersReducer(state = initial_state, action) {
             const newStateAfterLike = {...state};
             const postIdToLike = action.payload.postId;
             const likes = newStateAfterLike["users"]["users"][action.payload.userRef]["posts"][postIdToLike]["likes"];
+            const likedPosts = newStateAfterLike["users"]["users"][action.payload.userRef]["likes"];
             if(!likes.includes(action.payload.userRef)){
                 likes.push(action.payload.userRef);
+                likedPosts.push(postIdToLike);
             } else {    
                 let index = likes.indexOf(action.payload.userRef);
                 likes.splice(index, 1);
+                let postIndex = likedPosts.indexOf(postIdToLike);
+                likedPosts.splice(postIndex, 1);
             }
             return newStateAfterLike;
 
