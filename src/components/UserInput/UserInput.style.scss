@@ -1,6 +1,7 @@
 .user-input{
     display: flex;
-    width: 60vw;
+    width: 100%;
+    min-width: 500px;
     justify-content: center;
     align-items: center;
     margin: 30px 0;
