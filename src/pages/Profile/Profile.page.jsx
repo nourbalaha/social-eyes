@@ -12,7 +12,6 @@ import Posts from "../../components/Posts/Posts.component"
 
 function Profile({ match }) {
     const userRef = match.params.userref;
-    console.log(userRef)
     return (
         <div className="profile-page">
             <div className="profile-page-left">

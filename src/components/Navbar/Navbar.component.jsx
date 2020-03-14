@@ -5,11 +5,12 @@ import './Navbar.style.scss';
 import Owl from '../../assets/owl.png'
 
 function Navbar({ history }) {
+    const userRef = "nourbalaha"
     return (
         <nav className="navbar">
             <div className="navbar-icons">
-                <span onClick={()=>history.push("profile")}><i className="nav-item fa fa-user-circle"></i></span>
-                <span><i className="nav-item fa fa-home"></i></span>
+                <span onClick={()=>history.push(`/profile/${userRef}`)}><i className="nav-item fa fa-user-circle"></i></span>
+                <span onClick={()=>history.push(`/`)}><i className="nav-item fa fa-home"></i></span>
                 <span><i className="nav-item fa fa-plus-circle"></i></span>
                 <span><i className="nav-item fa fa-cog"></i></span>
                 <span><i className="nav-item fa fa-sign-out"></i></span>

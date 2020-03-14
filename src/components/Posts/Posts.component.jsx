@@ -1,11 +1,13 @@
 import React from 'react'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import Post from '../Post/Post.component'
 
-function Posts({ posts }) {
-  const id ="nourbalaha"
-  const newPosts = posts["posts"]["users"][id]["posts"]
+function Posts({ users, match }) {
+  const userRef = match.params.userref
+  const newPosts = users["users"]["users"][userRef]["posts"]
   const keys = Object.keys(newPosts);
 
   return (
@@ -26,8 +28,8 @@ function Posts({ posts }) {
 }
 
 function mapState (state) {
-  return { posts: state.posts }
+  return { users: state.users }
 }
 
 // Connect them:
-export default connect(mapState)(Posts)
+export default compose(withRouter, connect(mapState))(Posts)
