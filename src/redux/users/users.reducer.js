@@ -22,6 +22,12 @@ function usersReducer(state = initial_state, action) {
             newState["users"]["users"][action.payload.userref]["posts"][postId] = newPost;
             return newState;
 
+        case "UPDATE_POST":
+            const newStateAfterUpdate = {...state};
+            const postIdToUpdate = action.payload.postId;
+            newStateAfterUpdate["users"]["users"][action.payload.userRef]["posts"][postIdToUpdate]["message"] = action.payload.message;
+            return newStateAfterUpdate;
+
         case "DELETE_POST":
             const postIdToDelete = action.payload.postId
             const newStateAfterDelete = {...state};
