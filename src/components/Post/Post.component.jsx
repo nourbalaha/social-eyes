@@ -1,13 +1,22 @@
 import React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { withRouter} from 'react-router-dom';
+
 import './Post.style.scss';
 
 import Logo from '../../assets/avatar.png';
 
 import moment from "moment";
 
-function Post({ id, author, message, likes, createdAt }) {
+function Post({ id, author, message, likes, createdAt, onDelete, match }) {
     const date = new Date(createdAt);
-    let fromNow = moment([date.getFullYear(), date.getMonth(), date.getDate()]).fromNow()
+    let fromNow = moment([date.getFullYear(), date.getMonth(), date.getDate()]).fromNow();
+    const userRef = match.params.userref;
+
+    const handleDelete = () => {
+        onDelete(userRef, id)
+    }
 
     return (
         <div className="post">
@@ -19,7 +28,7 @@ function Post({ id, author, message, likes, createdAt }) {
                 <div className="post-title-config">
                     <span className="post-title-timestamp">{fromNow}</span>
                     <span className="post-title-edit"><i className="fa fa-pencil"></i></span>
-                    <span className="post-title-delete"><i className="fa fa-trash"></i></span>
+                    <span className="post-title-delete" onClick={handleDelete}><i className="fa fa-trash"></i></span>
                 </div>
             </div>
             <div className="post-body">
@@ -33,4 +42,13 @@ function Post({ id, author, message, likes, createdAt }) {
     )
 }
 
-export default Post;
+
+const mapDispatch = dispatch => {
+    return {
+      onDelete (userRef, postId) {
+        dispatch({ type: 'DELETE_POST', payload: {userRef, postId} })
+      }
+    }
+  }
+  
+  export default compose(withRouter, connect(null, mapDispatch))(Post);

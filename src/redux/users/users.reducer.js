@@ -10,7 +10,6 @@ function usersReducer(state = initial_state, action) {
         case "ADD_POST":
             const posts = state["users"]["users"][action.payload.userref]["posts"]
             const length = String(Object.keys(posts).length)
-            console.log(Object.keys(posts)[length - 1])
             const postId = String(Number(Object.keys(posts)[length - 1]) + 10)
             const newPost = {
                 postId,
@@ -22,6 +21,12 @@ function usersReducer(state = initial_state, action) {
             const newState = {...state};
             newState["users"]["users"][action.payload.userref]["posts"][postId] = newPost;
             return newState;
+
+        case "DELETE_POST":
+            const postIdToDelete = action.payload.postId
+            const newStateAfterDelete = {...state};
+            delete newStateAfterDelete["users"]["users"][action.payload.userRef]["posts"][postIdToDelete]
+            return newStateAfterDelete;
 
         default:
             return state;
