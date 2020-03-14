@@ -1,11 +1,11 @@
-import postsReducer from "./posts/posts.reducer"
+import usersReducer from "./users/users.reducer"
 
 import { combineReducers } from "redux"
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 const rootReducer = combineReducers({
-    posts: postsReducer,
+    users: usersReducer,
 })
 
 const persistConfig = {
