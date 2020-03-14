@@ -16,21 +16,21 @@ export const mock_data = {
                     postId: "11",
                     author: "nourbalaha",
                     message: "hello this is my first post",
-                    likes: ["1","2"],
+                    likes: ["nourbalaha","mohdbalaha"],
                     createdAt: 1583856688324
                 },
                 "12": {
                     postId: "12",
                     author: "nourbalaha",
                     message: "hello this is my second post",
-                    likes: ["1"],
+                    likes: ["nourbalaha"],
                     createdAt: 1583856772650
                 },
                 "13": {
                     postId: "13",
                     author: "nourbalaha",
                     message: "hello this is my third post",
-                    likes: ["2"],
+                    likes: ["mohdbalaha"],
                     createdAt: 1583857137924
                 },
             },
@@ -58,7 +58,7 @@ export const mock_data = {
                     postId: "15",
                     author: "mohdbalaha",
                     message: "hello this is my second post",
-                    likes: ["2"],
+                    likes: ["mohdbalaha"],
                     createdAt: 1583857342628
                 },
             },
