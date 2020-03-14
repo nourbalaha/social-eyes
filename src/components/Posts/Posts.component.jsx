@@ -7,20 +7,16 @@ import Post from '../Post/Post.component'
 
 function Posts({ users, match }) {
   const userRef = match.params.userref
-  const newPosts = users["users"]["users"][userRef]["posts"]
-  const keys = Object.keys(newPosts);
+  const posts = users["users"]["users"][userRef]["posts"]
+  const keys = Object.keys(posts);
 
   return (
       <div className="posts">
         {
           keys.map(
             post=><Post
-              key={newPosts[post]["postId"]} 
-              id={newPosts[post]["postId"]} 
-              author={newPosts[post]["author"]} 
-              message={newPosts[post]["message"]} 
-              likes={newPosts[post]["likes"]} 
-              createdAt={newPosts[post]["createdAt"]} />
+              key={posts[post]["postId"]} 
+              id={posts[post]["postId"]} />
             )
         }
       </div>
