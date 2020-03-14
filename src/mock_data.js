@@ -1,7 +1,7 @@
 export const mock_data = {
     users: {
         // User 1
-        "1": {
+        "nourbalaha": {
             id: "1",
             userRef: "nourbalaha",
             email: "nourbalaha0@gmail.com",
@@ -36,7 +36,7 @@ export const mock_data = {
             },
         },
         // User 2
-        "2": {
+        "mohdbalaha": {
             id: "2",
             userRef: "mohdbalaha",
             email: "mohdbalaha@yahoo.co.jp",

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Post from '../Post/Post.component'
 
 function Posts({ posts }) {
-  const id ="1"
+  const id ="nourbalaha"
   const newPosts = posts["posts"]["users"][id]["posts"]
   const keys = Object.keys(newPosts);
 

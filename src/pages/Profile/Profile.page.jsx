@@ -10,7 +10,7 @@ import UserInput from "../../components/UserInput/UserInput.component"
 import Posts from "../../components/Posts/Posts.component"
 
 function Profile() {
-    const id = "1";
+    const id = "nourbalaha";
     return (
         <div className="profile-page">
             <div className="profile-page-left">
