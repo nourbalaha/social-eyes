@@ -10,8 +10,7 @@ import Logo from '../../assets/avatar.png';
 import moment from "moment";
 
 function Post({ id, author, message, likes, createdAt, onDelete, match }) {
-    const date = new Date(createdAt);
-    let fromNow = moment([date.getFullYear(), date.getMonth(), date.getDate()]).fromNow();
+    let fromNow = moment(createdAt).fromNow();
     const userRef = match.params.userref;
 
     const handleDelete = () => {
