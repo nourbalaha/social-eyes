@@ -28,6 +28,18 @@ function usersReducer(state = initial_state, action) {
             newStateAfterUpdate["users"]["users"][action.payload.userRef]["posts"][postIdToUpdate]["message"] = action.payload.message;
             return newStateAfterUpdate;
 
+        case "LIKE_POST":
+            const newStateAfterLike = {...state};
+            const postIdToLike = action.payload.postId;
+            const likes = newStateAfterLike["users"]["users"][action.payload.userRef]["posts"][postIdToLike]["likes"];
+            if(!likes.includes(action.payload.userRef)){
+                likes.push(action.payload.userRef);
+            } else {    
+                let index = likes.indexOf(action.payload.userRef);
+                likes.splice(index, 1);
+            }
+            return newStateAfterLike;
+
         case "DELETE_POST":
             const postIdToDelete = action.payload.postId
             const newStateAfterDelete = {...state};
