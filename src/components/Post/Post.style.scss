@@ -46,6 +46,10 @@
                 font-weight: bold;
                 margin-left: 10px;
                 color: #6B757E;
+                cursor: pointer;
+                &:hover{
+                    color: #FF4335;
+                }
             }
             .post-title-icon{
                 width: 25px;

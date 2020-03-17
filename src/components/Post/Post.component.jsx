@@ -9,7 +9,7 @@ import Logo from '../../assets/avatar.png';
 
 import moment from "moment";
 
-function Post({ users, id, onDelete, onUpdate, onLike, match }) {
+function Post({ users, id, onDelete, onUpdate, onLike, match, history }) {
     const userRef = match.params.userref;
     const author = users["users"]["users"][userRef]["posts"][id]["author"];
     const message = users["users"]["users"][userRef]["posts"][id]["message"];
@@ -42,12 +42,16 @@ function Post({ users, id, onDelete, onUpdate, onLike, match }) {
         onLike(userRef, id)
     }
 
+    const handleLink = () => {
+        history.push(`/profile/${userRef}`)
+    }
+
     return (
         <div className="post">
             <div className="post-title">
                 <div className="post-user-container">
                     <img className="post-title-icon" src={Logo} alt="post-title-icon" />
-                    <span className="post-title-username">{author}</span>
+                    <span className="post-title-username" onClick={handleLink}>{author}</span>
                 </div>
                 <div className="post-title-config">
                     <span className="post-title-timestamp">{fromNow}</span>
