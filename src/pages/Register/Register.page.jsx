@@ -29,6 +29,9 @@ function Register({ history }) {
           try {
             await auth.createUserWithEmailAndPassword(user.email, user.password)
             const currentUser = auth.currentUser;
+            await currentUser.updateProfile({
+                displayName: user.userRef,
+              })
             const userRef = firestore.collection("users").doc(user.userRef);
                 const data = {};
                 data.id= currentUser.uid;
