@@ -1,4 +1,6 @@
 import React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 
 import { auth } from '../../firebase/firebase.config';
@@ -6,8 +8,8 @@ import './Navbar.style.scss';
 
 import Owl from '../../assets/owl.png';
 
-function Navbar({ history }) {
-    const userRef = "nourbalaha"
+function Navbar({ history, currentUser }) {
+    const userRef = currentUser.displayName;
 
     const handleSignout = async () => {
         try {
@@ -32,4 +34,12 @@ function Navbar({ history }) {
     )
 }
 
-export default withRouter(Navbar);
+
+function mapState (state) {
+  return { 
+      currentUser: state.auth.currentUser,
+  }
+}
+
+// Connect them:
+export default compose(withRouter, connect(mapState))(Navbar)
