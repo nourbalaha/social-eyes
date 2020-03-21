@@ -1,0 +1,80 @@
+.register{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .register-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #FDF9E5;
+        padding: 25px;
+        border-radius: 25px;
+        .register-image{
+            width: 200px;
+            height: 200px;
+            padding: 40px;
+            margin: 25px;
+            background-color: white;
+            border-radius: 50%;
+        }
+        .register-user-ref{
+            margin: 10px 0;
+            padding: 10px 20px;
+            color: #433B52;
+            background-color: #FDF9E5;
+            border: none;
+            border-bottom: 1px solid #60D5E8;
+            font-size: 20px;
+        }
+        .register-email{
+            margin: 10px 0;
+            padding: 10px 20px;
+            color: #433B52;
+            background-color: #FDF9E5;
+            border: none;
+            border-bottom: 1px solid #60D5E8;
+            font-size: 20px;
+        }
+        .register-password{
+            margin: 10px 0;
+            padding: 10px 20px;
+            color: #433B52;
+            background-color: #FDF9E5;
+            border: none;
+            border-bottom: 1px solid #60D5E8;
+            font-size: 20px;
+        }
+        .register-description{
+            margin: 10px 0;
+            padding: 10px 20px;
+            color: #433B52;
+            background-color: #FDF9E5;
+            border: none;
+            border-bottom: 1px solid #60D5E8;
+            font-size: 20px;
+        }
+        .register-button{
+            margin: 10px 0;
+            padding: 10px 25px;
+            color: white;
+            background-color: #60D5E8;
+            border: none;
+            border-radius: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .register-text{
+            margin-top: 50px;
+            color: #433B52;
+            font-size: 18px;
+        }
+        .register-login{
+            color: #433B52;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+}
