@@ -9,28 +9,18 @@ import Profile from './pages/Profile/Profile.page';
 import Home from './pages/Home/Home.page';
 import AddPost from './pages/AddPost/AddPost.page';
 import Settings from './pages/Settings/Settings.page';
+import Login from './pages/login/Login.page';
+import Register from './pages/Register/Register.page';
 
-import { auth, firestore } from './firebase/firebase.config';
+import { auth } from './firebase/firebase.config';
 
-function App({ onAddUser }) {
+function App({ currentUser, onAddUser }) {
   useEffect(() => {
     let unsubscribeFromAuth = null;
     
     unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
       if (user) {
-        const userRef = firestore.collection("users").doc(user.uid)
-        const userSnap = await userRef.get()
-        // if it is a new user create user data
-        if(!userSnap.exists){
-          const data = {}
-          data.Email = user.email;
-          data.Name = user.displayName;
-          data.Role = "user"
-          await userRef.set(data);  
-        }
-        // set user
         onAddUser(user)
-  
       } else {
         onAddUser(null)
       }
@@ -46,13 +36,16 @@ function App({ onAddUser }) {
     <div className="app">
       <main className="main">
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/profile/:userref" component={Profile} />
-          <Route path="/addpost/" component={AddPost} />
-          <Route path="/settings/" component={Settings} />
+          <Route exact path="/" component={currentUser?Home:Login} />
+          <Route path="/home" component={currentUser?Home:Login} />
+          <Route path="/profile/:userref" component={currentUser?Profile:Login} />
+          <Route path="/addpost/" component={currentUser?AddPost:Login} />
+          <Route path="/settings/" component={currentUser?Settings:Login} />
+          <Route path="/login/" component={currentUser?Home:Login} />
+          <Route path="/register/" component={currentUser?Home:Register} />
         </Switch>
       </main>
-      <Navbar />
+      {currentUser && <Navbar />}
     </div>
   );
 }
