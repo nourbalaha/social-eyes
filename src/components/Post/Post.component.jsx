@@ -3,18 +3,20 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter} from 'react-router-dom';
 
+import { updatePost, deletePost } from '../../redux/posts/posts.actions';
+
 import './Post.style.scss';
 
 import Logo from '../../assets/avatar.png';
 
 import moment from "moment";
 
-function Post({ users, id, onDelete, onUpdate, onLike, match, history }) {
+function Post({ users, id, onDelete, onUpdate, onLike, match, history, posts }) {
     const userRef = match.params.userref;
-    const author = users["users"]["users"][userRef]["posts"][id]["author"];
-    const message = users["users"]["users"][userRef]["posts"][id]["message"];
-    const likes = users["users"]["users"][userRef]["posts"][id]["likes"];
-    const createdAt = users["users"]["users"][userRef]["posts"][id]["createdAt"]; 
+    const author = posts[id]["author"];
+    const message = posts[id]["message"];
+    const likes = posts[id]["likes"];
+    const createdAt = posts[id]["createdAt"]; 
     let fromNow = moment(createdAt).fromNow();
 
     const red = likes.includes(userRef)?true:false;
@@ -26,7 +28,8 @@ function Post({ users, id, onDelete, onUpdate, onLike, match, history }) {
     }
 
     const handleUpdate = (message) => {
-        onUpdate(userRef, id, message)
+        const post = { "postId":id, message, author, likes, createdAt };
+        onUpdate(Object.assign({},post));
         setTrigger(!trigger);
     }
 
@@ -35,7 +38,7 @@ function Post({ users, id, onDelete, onUpdate, onLike, match, history }) {
     }
 
     const handleDelete = () => {
-        onDelete(userRef, id)
+        onDelete(id)
     }
 
     const handleLike = () => {
@@ -76,17 +79,17 @@ function Post({ users, id, onDelete, onUpdate, onLike, match, history }) {
 
 const mapState = state => {
     return {
-        users: state.users,
+        posts: state.posts,
     }
 }
 
 const mapDispatch = dispatch => {
     return {
-      onUpdate (userRef, postId, message) {
-        dispatch({ type: 'UPDATE_POST', payload: {userRef, postId, message} })
+      onUpdate (post) {
+        dispatch(updatePost(post))
       },
-      onDelete (userRef, postId) {
-        dispatch({ type: 'DELETE_POST', payload: {userRef, postId} })
+      onDelete (postId) {
+        dispatch(deletePost(postId))
       },
       onLike (userRef, postId) {
         dispatch({ type: 'LIKE_POST', payload: {userRef, postId} })
