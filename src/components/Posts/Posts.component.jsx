@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
+import { setPosts } from '../../redux/posts/posts.actions'
+
 import Post from '../Post/Post.component'
 
-function Posts({ users, match }) {
-  const userRef = match.params.userref
-  const posts = users["users"]["users"][userRef]["posts"]
-  const keys = Object.keys(posts);
+function Posts({ users, match, onSetPosts, posts }) {
+  useEffect(()=>{
+    onSetPosts();
+  },[onSetPosts])
+
+  // const userRef = match.params.userref
+  const newPosts = posts;
+  const keys = Object.keys(newPosts);
 
   return (
       <div className="posts">
         {
           keys.map(
             post=><Post
-              key={posts[post]["postId"]} 
-              id={posts[post]["postId"]} />
+              key={newPosts[post]["postId"]} 
+              id={newPosts[post]["postId"]} />
             )
         }
       </div>
@@ -24,8 +30,17 @@ function Posts({ users, match }) {
 }
 
 function mapState (state) {
-  return { users: state.users }
+  return { 
+    posts: state.posts,
+  }
 }
 
-// Connect them:
-export default compose(withRouter, connect(mapState))(Posts)
+const mapDispatch = dispatch => {
+  return {
+    onSetPosts() {
+      dispatch(setPosts())
+    }
+  }
+}
+
+export default compose(withRouter, connect(mapState,mapDispatch))(Posts)
