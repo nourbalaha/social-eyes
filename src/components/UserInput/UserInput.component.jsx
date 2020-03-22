@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { compose } from 'redux'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import { addPost } from '../../redux/posts/posts.actions';
 
 import './UserInput.style.scss';
-import avatar from '../../assets/avatar.png'
+import avatar from '../../assets/avatar.png';
 
 function UserInput({ onSubmit, match }) {
   const [input, setInput] = useState("");
@@ -14,7 +16,7 @@ function UserInput({ onSubmit, match }) {
   }
 
   const handleSubmit = () => {
-    onSubmit(match.params.userref, input);
+    onSubmit(input);
     setInput("")
   }
     return (
@@ -28,8 +30,8 @@ function UserInput({ onSubmit, match }) {
 
 const mapDispatch = dispatch => {
   return {
-    onSubmit (userref, message) {
-      dispatch({ type: 'ADD_POST', payload: {userref, message} })
+    onSubmit (message) {
+      dispatch(addPost({message}))
     }
   }
 }
