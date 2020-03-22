@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter} from 'react-router-dom';
 
-import { updatePost, deletePost } from '../../redux/posts/posts.actions';
+import { updatePost, deletePost, likePost } from '../../redux/posts/posts.actions';
 
 import './Post.style.scss';
 
@@ -42,7 +42,7 @@ function Post({ users, id, onDelete, onUpdate, onLike, match, history, posts }) 
     }
 
     const handleLike = () => {
-        onLike(userRef, id)
+        onLike({userRef, postId:id})
     }
 
     const handleLink = () => {
@@ -91,9 +91,12 @@ const mapDispatch = dispatch => {
       onDelete (postId) {
         dispatch(deletePost(postId))
       },
-      onLike (userRef, postId) {
-        dispatch({ type: 'LIKE_POST', payload: {userRef, postId} })
+      onLike (post) {
+        dispatch(likePost(post))
       },
+    //   onLike (userRef, postId) {
+    //     dispatch({ type: 'LIKE_POST', payload: {userRef, postId} })
+    //   },
     }
   }
   
