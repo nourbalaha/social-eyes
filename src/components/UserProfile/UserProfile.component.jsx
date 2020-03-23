@@ -1,26 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { firestore } from '../../firebase/firebase.config';
+import { getUserData } from '../../redux/user/user.actions';
 
 import "./UserProfile.style.scss";
 
 import Avatar from "../../assets/avatar.png";
 
-function UserProfile({ currentUser }) {
-    const [user, setUser] = useState({userRef:"", description:"", likes:[], posts:{}})
-
+function UserProfile({ user, onGetUserData }) {
     useEffect(()=>{
-        const fetchData = async () => {
-            const profileRef = firestore.collection("users").doc(currentUser.displayName);
-            const profileSnap = await profileRef.get();
-            setUser(profileSnap.data())
-        }
-        fetchData()
-    },[currentUser.displayName])
-
+        onGetUserData()
+    },[onGetUserData])
+    
+    console.log(user)
     return (
         <div className="profile-page-left-container">
             <img className="profile-page-left-image" src={Avatar} alt="profile-pic" />
@@ -37,7 +31,16 @@ function UserProfile({ currentUser }) {
 function mapState (state) {
     return { 
         currentUser: state.auth.currentUser,
+        user: state.user,
     }
 }
+
+function mapDispatch (dispatch) {
+    return {
+      onGetUserData () {
+        dispatch(getUserData())
+      },
+    }
+  }
   
-export default compose(withRouter, connect(mapState))(UserProfile)
+export default compose(withRouter, connect(mapState, mapDispatch))(UserProfile)
