@@ -9,12 +9,11 @@ import "./UserProfile.style.scss";
 
 import Avatar from "../../assets/avatar.png";
 
-function UserProfile({ user, onGetUserData }) {
+function UserProfile({ user, posts, onGetUserData }) {
     useEffect(()=>{
         onGetUserData()
     },[onGetUserData])
-    
-    console.log(user)
+
     return (
         <div className="profile-page-left-container">
             <img className="profile-page-left-image" src={Avatar} alt="profile-pic" />
@@ -22,7 +21,7 @@ function UserProfile({ user, onGetUserData }) {
             <span className="profile-page-left-description">{user.description}</span>
             <div className="profile-page-left-posts-likes-container">
                 <span className="profile-page-left-likes">{`Likes: ${user.likes.length}`}</span>
-                <span className="profile-page-left-posts">{`Posts: ${Object.keys(user.posts).length}`}</span>
+                <span className="profile-page-left-posts">{`Posts: ${Object.keys(posts).length}`}</span>
             </div>
         </div>
     )
@@ -32,6 +31,7 @@ function mapState (state) {
     return { 
         currentUser: state.auth.currentUser,
         user: state.user,
+        posts: state.posts,
     }
 }
 
