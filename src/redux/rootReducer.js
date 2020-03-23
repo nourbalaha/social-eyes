@@ -1,4 +1,4 @@
-import usersReducer from "./users/users.reducer"
+import userReducer from "./user/user.reducer"
 import authReducer from "./auth/auth.reducer"
 import postsReducer from "./posts/posts.reducer"
 
@@ -7,7 +7,7 @@ import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 const rootReducer = combineReducers({
-    users: usersReducer,
+    user: userReducer,
     auth: authReducer,
     posts: postsReducer,
 })

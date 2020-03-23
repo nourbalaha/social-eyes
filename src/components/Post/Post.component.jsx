@@ -11,7 +11,7 @@ import Logo from '../../assets/avatar.png';
 
 import moment from "moment";
 
-function Post({ users, id, onDelete, onUpdate, onLike, match, history, posts }) {
+function Post({ id, onDelete, onUpdate, onLike, match, history, posts }) {
     const userRef = match.params.userref;
     const author = posts[id]["author"];
     const message = posts[id]["message"];
@@ -94,9 +94,6 @@ const mapDispatch = dispatch => {
       onLike (post) {
         dispatch(likePost(post))
       },
-    //   onLike (userRef, postId) {
-    //     dispatch({ type: 'LIKE_POST', payload: {userRef, postId} })
-    //   },
     }
   }
   

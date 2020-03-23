@@ -7,7 +7,7 @@ import { setPosts } from '../../redux/posts/posts.actions'
 
 import Post from '../Post/Post.component'
 
-function Posts({ users, match, onSetPosts, posts }) {
+function Posts({ match, onSetPosts, posts }) {
   useEffect(()=>{
     onSetPosts();
   },[onSetPosts])
