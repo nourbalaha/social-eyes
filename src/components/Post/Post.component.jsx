@@ -46,7 +46,7 @@ function Post({ id, onDelete, onUpdate, onLike, match, history, posts }) {
     }
 
     const handleLink = () => {
-        history.push(`/profile/${userRef}`)
+        history.push(`/profile/${author}`)
     }
 
     return (
