@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter} from 'react-router-dom';
 
-import { updatePost, deletePost, likePost } from '../../redux/posts/posts.actions';
+import { updatePost, deletePost, likePost, setPosts } from '../../redux/posts/posts.actions';
 
 import './Post.style.scss';
 
@@ -11,15 +11,16 @@ import Logo from '../../assets/avatar.png';
 
 import moment from "moment";
 
-function Post({ id, onDelete, onUpdate, onLike, match, history, posts }) {
+function Post({ id, onSetPosts, onDelete, onUpdate, onLike, match, history, posts, currentUser }) {
     const userRef = match.params.userref;
     const author = posts[id]["author"];
+    const current = currentUser.displayName;
     const message = posts[id]["message"];
     const likes = posts[id]["likes"];
     const createdAt = posts[id]["createdAt"]; 
     let fromNow = moment(createdAt).fromNow();
 
-    const red = likes.includes(userRef)?true:false;
+    const red = likes.includes(current)?true:false;
     const [trigger, setTrigger] = useState(true);
     const [msg, setMsg] = useState(message);
 
@@ -38,11 +39,11 @@ function Post({ id, onDelete, onUpdate, onLike, match, history, posts }) {
     }
 
     const handleDelete = () => {
-        onDelete(id)
+        onDelete({id,userRef})
     }
 
     const handleLike = () => {
-        onLike({userRef, postId:id})
+        onLike({current:currentUser.displayName,userRef, postId:id})
     }
 
     const handleLink = () => {
@@ -69,7 +70,7 @@ function Post({ id, onDelete, onUpdate, onLike, match, history, posts }) {
                 </div>
                 <div className="post-like-container">
                     <span className="post-like" style={{color:red?"red":"black"}} onClick={handleLike}><i className="fa fa-heart"></i></span>
-                    <span className="post-like-count" style={{color:red?"red":"black"}}>{likes.length}</span>
+                    <span className="post-like-count" style={{color:red?"red":"black"}}>{posts[id].likes.length}</span>
                 </div>
             </div>
         </div>
@@ -79,6 +80,7 @@ function Post({ id, onDelete, onUpdate, onLike, match, history, posts }) {
 
 const mapState = state => {
     return {
+        currentUser: state.auth.currentUser,
         posts: state.posts,
     }
 }
@@ -88,12 +90,15 @@ const mapDispatch = dispatch => {
       onUpdate (post) {
         dispatch(updatePost(post))
       },
-      onDelete (postId) {
-        dispatch(deletePost(postId))
+      onDelete (post) {
+        dispatch(deletePost(post))
       },
       onLike (post) {
         dispatch(likePost(post))
       },
+      onSetPosts(userRef) {
+        dispatch(setPosts(userRef))
+      }
     }
   }
   

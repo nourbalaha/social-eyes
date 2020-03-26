@@ -9,10 +9,13 @@ import Post from '../Post/Post.component'
 
 function Posts({ match, onSetPosts, posts }) {
   useEffect(()=>{
-    onSetPosts();
-  },[onSetPosts])
+    // if(match.params.userref){
+      onSetPosts(match.params.userref);
+    // } else {
+    //   onSetPosts();
+    // }
+  },[match.params.userref, onSetPosts])
 
-  // const userRef = match.params.userref
   const newPosts = posts;
   const keys = Object.keys(newPosts);
 
@@ -37,8 +40,8 @@ function mapState (state) {
 
 const mapDispatch = dispatch => {
   return {
-    onSetPosts() {
-      dispatch(setPosts())
+    onSetPosts(userRef) {
+      dispatch(setPosts(userRef))
     }
   }
 }
