@@ -1,5 +1,15 @@
 // Initial State
-const initial_state = {};
+const initial_state = {
+    id:"",
+    userRef:"",
+    createdAt:"",
+    description:"",
+    email:"",
+    likes:[],
+    followers:[],
+    following:[],
+    openProfile:true,
+};
   
 // Reducer
 function userReducer(state = initial_state, action) {

@@ -12,7 +12,8 @@ function postsReducer(state = initial_state, action) {
             const newState = {...state};
             const newPost = {
                 postId: action.payload.postId,
-                author: action.payload.userref,
+                author: action.payload.author,
+                userRef: action.payload.userRef,
                 message: action.payload.message,
                 likes: action.payload.likes,
                 createdAt: action.payload.createdAt,
@@ -30,16 +31,16 @@ function postsReducer(state = initial_state, action) {
             const newStateAfterLike = {...state};
             const postIdToLike = action.payload.postId;
             const likes = newStateAfterLike[postIdToLike]["likes"];
-            if(!likes.includes(action.payload.userRef)){
-                likes.push(action.payload.userRef);
+            if(!likes.includes(action.payload.current)){
+                likes.push(action.payload.current);
             } else {    
-                let index = likes.indexOf(action.payload.userRef);
+                let index = likes.indexOf(action.payload.current);
                 likes.splice(index, 1);
             }
             return newStateAfterLike;
 
         case "DELETE_POST":
-            const postIdToDelete = action.payload.postId
+            const postIdToDelete = action.payload.id
             const newStateAfterDelete = {...state};
             delete newStateAfterDelete[postIdToDelete]
             return newStateAfterDelete;

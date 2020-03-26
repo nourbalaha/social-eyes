@@ -1,9 +1,9 @@
 import { firestore } from "../../firebase/firebase.config"
 
-export const setPosts = () => {
+export const setPosts = (newUserRef) => {
     return async (dispatch, getState) => {
-        const currentUserRef = getState().auth.currentUser.displayName; 
-        const postsRef = firestore.collection("users").doc(currentUserRef).collection("posts");
+        // const currentUserRef = newUserRef?newUserRef:getState().auth.currentUser.displayName; 
+        const postsRef = firestore.collection("users").doc(newUserRef).collection("posts");
         const postsSnap = await postsRef.get();
         let posts = postsSnap.empty?[]:postsSnap.docs.map(doc=>Object.assign({},doc.data()));
         let obj = {}
@@ -17,11 +17,12 @@ export const setPosts = () => {
 
 export const addPost = (post) => {
     return async (dispatch, getState) => {
-        const currentUserRef = getState().auth.currentUser.displayName;
-        const ref = await firestore.collection("users").doc(currentUserRef).collection("posts").doc()
+        // const currentUserRef = getState().auth.currentUser.displayName;
+        const ref = await firestore.collection("users").doc(post.userRef).collection("posts").doc()
         post.postId = ref.id
         post.createdAt = Date.now();
-        post.userref = currentUserRef;
+        // post.userRef = currentUserRef;
+        // post.author = post.userRef;
         post.likes = [];
         await ref.set(Object.assign({},post));
 
@@ -48,14 +49,14 @@ export const updatePost = (post) => {
 export const likePost = (post) => {
     return async (dispatch, getState) => {
         const currentUserRef = getState().auth.currentUser.displayName; 
-        const ref = await firestore.collection("users").doc(currentUserRef).collection("posts").doc(post.postId);
+        const ref = await firestore.collection("users").doc(post.userRef).collection("posts").doc(post.postId);
         let result = await ref.get()
         result = result.data();
         const likes = result["likes"];
 
         if(!likes.includes(currentUserRef)){
             likes.push(currentUserRef);
-        } else {    
+        } else {
             let index = likes.indexOf(currentUserRef);
             likes.splice(index, 1);
         }
@@ -69,15 +70,15 @@ export const likePost = (post) => {
     }
 }
 
-export const deletePost = (postId) => {
+export const deletePost = (post) => {
     return async (dispatch, getState) => {
-        const currentUserRef = getState().auth.currentUser.displayName; 
-        const ref = await firestore.collection("users").doc(currentUserRef).collection("posts").doc(postId);
+        // const currentUserRef = getState().auth.currentUser.displayName; 
+        const ref = await firestore.collection("users").doc(post.userRef).collection("posts").doc(post.id);
         await ref.delete()
 
         dispatch({
             type: "DELETE_POST",
-            payload: {postId},
+            payload: post,
         })
     }
 }
