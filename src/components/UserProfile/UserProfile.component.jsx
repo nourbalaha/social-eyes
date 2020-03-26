@@ -9,10 +9,14 @@ import "./UserProfile.style.scss";
 
 import Avatar from "../../assets/avatar.png";
 
-function UserProfile({ user, posts, onGetUserData }) {
+function UserProfile({ match, user, currentUser, posts, onGetUserData }) {
     useEffect(()=>{
-        onGetUserData()
-    },[onGetUserData])
+        if(match.params.userref){
+            onGetUserData(match.params.userref)
+        } else {
+            onGetUserData()
+        }
+    },[currentUser.userRef, match.params.userref, onGetUserData])
 
     return (
         <div className="profile-page-left-container">
@@ -37,8 +41,8 @@ function mapState (state) {
 
 function mapDispatch (dispatch) {
     return {
-      onGetUserData () {
-        dispatch(getUserData())
+      onGetUserData (userRef) {
+        dispatch(getUserData(userRef))
       },
     }
   }
