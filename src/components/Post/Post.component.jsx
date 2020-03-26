@@ -59,8 +59,8 @@ function Post({ id, onSetPosts, onDelete, onUpdate, onLike, match, history, post
                 </div>
                 <div className="post-title-config">
                     <span className="post-title-timestamp">{fromNow}</span>
-                    <span className="post-title-edit" onClick={handleEdit}><i className="fa fa-pencil"></i></span>
-                    <span className="post-title-delete" onClick={handleDelete}><i className="fa fa-trash"></i></span>
+                    {(current===author || current===userRef) && <span className="post-title-edit" onClick={handleEdit}><i className="fa fa-pencil"></i></span>}
+                    {(current===author || current===userRef) && <span className="post-title-delete" onClick={handleDelete}><i className="fa fa-trash"></i></span>}
                 </div>
             </div>
             <div className="post-body">
