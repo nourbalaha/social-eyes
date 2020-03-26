@@ -14,7 +14,6 @@ function People({ users, onGetUsers }) {
         onGetUsers()
     },[onGetUsers])
 
-    console.log(users)
     return (
         <div className="people-container">
             <span className="people-text">People Using SocialEyes:</span>
