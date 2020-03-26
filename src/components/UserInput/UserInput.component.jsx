@@ -8,7 +8,7 @@ import { addPost } from '../../redux/posts/posts.actions';
 import './UserInput.style.scss';
 import avatar from '../../assets/avatar.png';
 
-function UserInput({ onSubmit, match }) {
+function UserInput({ onSubmit, match, currentUser }) {
   const [input, setInput] = useState("");
 
   const handleChange = event => {
@@ -16,7 +16,8 @@ function UserInput({ onSubmit, match }) {
   }
 
   const handleSubmit = () => {
-    onSubmit(input);
+    console.log(currentUser.displayName)
+    onSubmit({message:input,author:currentUser.displayName,userRef:match.params.userref});
     setInput("")
   }
     return (
@@ -28,12 +29,18 @@ function UserInput({ onSubmit, match }) {
     )
 }
 
+const mapState = state => {
+  return {
+      currentUser: state.auth.currentUser,
+  }
+}
+
 const mapDispatch = dispatch => {
   return {
-    onSubmit (message) {
-      dispatch(addPost({message}))
+    onSubmit (post) {
+      dispatch(addPost(post))
     }
   }
 }
 
-export default compose(withRouter, connect(null, mapDispatch))(UserInput);
+export default compose(withRouter, connect(mapState, mapDispatch))(UserInput);
