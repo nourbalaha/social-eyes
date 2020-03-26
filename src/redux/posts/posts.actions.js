@@ -17,12 +17,9 @@ export const setPosts = (newUserRef) => {
 
 export const addPost = (post) => {
     return async (dispatch, getState) => {
-        // const currentUserRef = getState().auth.currentUser.displayName;
         const ref = await firestore.collection("users").doc(post.userRef).collection("posts").doc()
         post.postId = ref.id
         post.createdAt = Date.now();
-        // post.userRef = currentUserRef;
-        // post.author = post.userRef;
         post.likes = [];
         await ref.set(Object.assign({},post));
 
@@ -35,8 +32,7 @@ export const addPost = (post) => {
 
 export const updatePost = (post) => {
     return async (dispatch, getState) => {
-        const currentUserRef = getState().auth.currentUser.displayName; 
-        const ref = await firestore.collection("users").doc(currentUserRef).collection("posts").doc(post.postId);
+        const ref = await firestore.collection("users").doc(post.userRef).collection("posts").doc(post.postId);
         await ref.update(post)
     
         dispatch({

@@ -29,7 +29,7 @@ function Post({ id, onSetPosts, onDelete, onUpdate, onLike, match, history, post
     }
 
     const handleUpdate = (message) => {
-        const post = { "postId":id, message, author, likes, createdAt };
+        const post = { "postId":id, message, author, likes, createdAt, userRef, current };
         onUpdate(Object.assign({},post));
         setTrigger(!trigger);
     }
