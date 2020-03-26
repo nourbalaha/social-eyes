@@ -68,7 +68,6 @@ export const likePost = (post) => {
 
 export const deletePost = (post) => {
     return async (dispatch, getState) => {
-        // const currentUserRef = getState().auth.currentUser.displayName; 
         const ref = await firestore.collection("users").doc(post.userRef).collection("posts").doc(post.id);
         await ref.delete()
 

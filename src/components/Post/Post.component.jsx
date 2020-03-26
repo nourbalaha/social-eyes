@@ -39,11 +39,11 @@ function Post({ id, onSetPosts, onDelete, onUpdate, onLike, match, history, post
     }
 
     const handleDelete = () => {
-        onDelete({id,userRef})
+        onDelete({id,userRef,current})
     }
 
     const handleLike = () => {
-        onLike({current:currentUser.displayName,userRef, postId:id})
+        onLike({current, userRef, postId:id})
     }
 
     const handleLink = () => {
