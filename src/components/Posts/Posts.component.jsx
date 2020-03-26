@@ -9,11 +9,7 @@ import Post from '../Post/Post.component'
 
 function Posts({ match, onSetPosts, posts }) {
   useEffect(()=>{
-    // if(match.params.userref){
       onSetPosts(match.params.userref);
-    // } else {
-    //   onSetPosts();
-    // }
   },[match.params.userref, onSetPosts])
 
   const newPosts = posts;
