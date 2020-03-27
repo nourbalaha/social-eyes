@@ -2,8 +2,7 @@ import { firestore } from "../../firebase/firebase.config"
 
 export const setPosts = (newUserRef) => {
     return async (dispatch, getState) => {
-        // const currentUserRef = newUserRef?newUserRef:getState().auth.currentUser.displayName; 
-        const postsRef = firestore.collection("users").doc(newUserRef).collection("posts");
+        const postsRef = firestore.collection("users").doc(newUserRef).collection("posts").orderBy("createdAt", "desc");
         const postsSnap = await postsRef.get();
         let posts = postsSnap.empty?[]:postsSnap.docs.map(doc=>Object.assign({},doc.data()));
         let obj = {}
