@@ -14,7 +14,9 @@ function Home() {
             </div>
 
             <div className="home-page-right">
-                Right Section
+                <div className="news-feed">
+                    news feed
+                </div>
             </div>
         </div>
     )
