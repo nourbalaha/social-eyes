@@ -18,7 +18,9 @@ function Posts({ match, onSetPosts, posts }) {
   return (
       <div className="posts">
         {
-          keys.map(
+          keys
+          .sort((a,b)=>newPosts[b]["createdAt"] - newPosts[a]["createdAt"])
+          .map(
             post=><Post
               key={newPosts[post]["postId"]} 
               id={newPosts[post]["postId"]} />
