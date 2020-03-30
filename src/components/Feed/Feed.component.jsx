@@ -20,7 +20,9 @@ function Feed({ match, onGetFeed, feed }) {
   return (
       <div className="feed">
         {
-          keys.map(
+          keys
+          .sort((a,b)=>newPosts[b]["createdAt"] - newPosts[a]["createdAt"])
+          .map(
             post=><FeedPost
               key={newPosts[post]["postId"]} 
               id={newPosts[post]["postId"]} />
