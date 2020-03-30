@@ -26,12 +26,18 @@
             .feed-post-title-username{
                 font-size: small;
                 font-weight: bold;
-                margin-left: 10px;
                 color: #6B757E;
+                margin-left: 5px;
                 cursor: pointer;
                 &:hover{
                     color: #FF4335;
                 }
+            }
+            .feed-post-title-seperator{
+                font-size: small;
+                font-weight: bold;
+                color: #6B757E;
+                margin-left: 5px;
             }
             .feed-post-title-icon{
                 width: 25px;
@@ -54,6 +60,7 @@
                 border: none;
                 font-size: 16px;
                 margin-right: 10px;
+                color: #616161;
                 background-color: #FFFFFF;
                 flex: 1;
             }
