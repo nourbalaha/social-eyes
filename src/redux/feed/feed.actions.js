@@ -12,16 +12,20 @@ export const getFeed = () => {
                 return postSnap;
         })
 
-        let result = await Promise.all(newsFeed).then(data=>{
-            return data.map(result=>result.docs[0].data());
+        let feed = await Promise.all(newsFeed).then(data=>{
+            return data.map(result=>result.docs);
         })
 
-        let obj = {}
-        result.forEach(post=>obj[post.postId]=post)
+        let result = {}
+        feed.forEach(top=>{
+            top.forEach(bottom=>{
+                result[bottom.id]=bottom.data();
+            })
+        })
 
         dispatch({
             type: "GET_FEED",
-            payload: obj,
+            payload: result,
         })
     }
 }
