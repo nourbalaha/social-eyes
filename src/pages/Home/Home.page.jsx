@@ -3,6 +3,7 @@ import React from 'react';
 import './Home.style.scss';
 
 import People from '../../components/People/People.component';
+import Feed from '../../components/Feed/Feed.component';
 
 function Home() {
     return (
@@ -15,7 +16,7 @@ function Home() {
 
             <div className="home-page-right">
                 <div className="news-feed">
-                    news feed
+                    <Feed />
                 </div>
             </div>
         </div>
