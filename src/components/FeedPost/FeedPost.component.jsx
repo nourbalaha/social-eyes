@@ -26,8 +26,8 @@ function FeedPost({ id, onLike, match, history, feed, currentUser }) {
         onLike({current, userRef, postId:id})
     }
 
-    const handleLink = () => {
-        history.push(`/profile/${author}`)
+    const handleLink = (user) => {
+        history.push(`/profile/${user}`)
     }
 
     return (
@@ -35,7 +35,13 @@ function FeedPost({ id, onLike, match, history, feed, currentUser }) {
             <div className="feed-post-title">
                 <div className="feed-post-user-container">
                     <img className="feed-post-title-icon" src={Logo} alt="feed-post-title-icon" />
-                    <span className="feed-post-title-username" onClick={handleLink}>{author}</span>
+                    <span className="feed-post-title-username" onClick={()=>handleLink(author)}>{author}</span>
+                    {
+                        author!==userRef && <span className="feed-post-title-seperator">{">"}</span>
+                    }
+                    {
+                        author!==userRef && <span className="feed-post-title-username" onClick={()=>handleLink(userRef)}>{userRef}</span>
+                    }
                 </div>
                 <div className="feed-post-title-config">
                     <span className="feed-post-title-timestamp">{fromNow}</span>
@@ -43,7 +49,7 @@ function FeedPost({ id, onLike, match, history, feed, currentUser }) {
             </div>
             <div className="feed-post-body">
                 <div className="message-container">
-                    <input className="feed-post-message" type="text" value={message} />
+                    <span className="feed-post-message">{message}</span>
                 </div>
                 <div className="feed-post-like-container">
                     <span className="feed-post-like" style={{color:red?"red":"black"}} onClick={handleLike}><i className="fa fa-heart"></i></span>
