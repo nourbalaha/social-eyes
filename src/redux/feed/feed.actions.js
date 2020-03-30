@@ -44,7 +44,7 @@ export const likeFeedPost = (post) => {
         await ref.update(result)
     
         dispatch({
-            type:"LIKE_POST", 
+            type:"LIKE_FEED_POST", 
             payload: post
         })
     }
