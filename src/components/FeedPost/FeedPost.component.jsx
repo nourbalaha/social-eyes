@@ -12,8 +12,8 @@ import Logo from '../../assets/avatar.png';
 import moment from "moment";
 
 function FeedPost({ id, onLike, match, history, feed, currentUser }) {
-    const userRef = match.params.userref;
     const author = feed[id]["author"];
+    const userRef = feed[id]["userRef"];
     const current = currentUser.displayName;
     const message = feed[id]["message"];
     const likes = feed[id]["likes"];
