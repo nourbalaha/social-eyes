@@ -3,6 +3,7 @@ import React from 'react';
 import './Settings.style.scss';
 
 import UserProfile from '../../components/UserProfile/UserProfile.component';
+import SettingsSection from '../../components/SettingsSection/SettingsSection.component';
 
 function Settings() {
     return (
@@ -12,7 +13,7 @@ function Settings() {
             </div>
 
             <div className="settings-page-right">
-                Right Section
+                <SettingsSection />
             </div>
         </div>
     )
