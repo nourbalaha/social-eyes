@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { getFeed } from '../../redux/feed/feed.actions'
 
-import './Settings.style.scss'
+import SwitchUI from '../SwitchUI/SwitchUI.material'
 
-function Settings() {
+import './SettingsSection.style.scss'
+
+function SettingsSection() {
   return (
-      <div className="settings">
-        Settings
+      <div className="settings-section">
+        <SwitchUI />
       </div>
   )
 }
@@ -29,4 +31,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default compose(withRouter, connect(mapState,mapDispatch))(Settings)
+export default compose(withRouter, connect(mapState,mapDispatch))(SettingsSection)
