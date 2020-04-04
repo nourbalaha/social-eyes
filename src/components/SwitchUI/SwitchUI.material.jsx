@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-export default function SwitchesGroup() {
-  const [state, setState] = React.useState({
-    openProfile: true,
-  });
+export default function SwitchUI() {
+  const [state, setState] = useState(false);
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setState(event.target.checked);
   };
 
   return (
