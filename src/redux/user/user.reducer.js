@@ -15,6 +15,10 @@ const initial_state = {
 function userReducer(state = initial_state, action) {
     switch (action.type) {  
         case "GET_USER_DATA":
+            const newState = action.payload;
+            return newState;
+
+        case "SET_USER_DATA":
             const newSetState = action.payload;
             return newSetState;
 
