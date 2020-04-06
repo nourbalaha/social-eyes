@@ -17,6 +17,9 @@
         width: 350px;
         height: 100vh;
         background-color: #F8F9FA;
+        background-image: url("../../assets/background.jpg");
+        background-position: center;
+        background-size: cover;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;

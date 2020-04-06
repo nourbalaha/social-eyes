@@ -3,11 +3,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        padding: 0 25px;
+        width: 100%;
         .people-text{
            font-weight: bolder;
-           color: #555555;
-           margin-top: 5px;
+           color: #FFFFFF;
+           margin-top: 20px;
+           align-self: center;
            margin-bottom: 20px;
         }
         .persons-container{
