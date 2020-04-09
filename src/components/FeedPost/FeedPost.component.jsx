@@ -5,6 +5,8 @@ import { withRouter} from 'react-router-dom';
 
 import { likeFeedPost } from '../../redux/feed/feed.actions';
 
+import validateYoutubeUrl from '../../utils/validateYoutubeUrl';
+
 import './FeedPost.style.scss';
 
 import Logo from '../../assets/avatar.png';
@@ -48,9 +50,32 @@ function FeedPost({ id, onLike, match, history, feed, currentUser }) {
                 </div>
             </div>
             <div className="feed-post-body">
-                <div className="message-container">
-                    <span className="feed-post-message">{message}</span>
-                </div>
+                {
+                validateYoutubeUrl(message).result
+                ?
+                (
+                    <div className="video-container">
+                    <iframe 
+                    width="640" 
+                    height="360" 
+                    src={`https://www.youtube.com/embed/${validateYoutubeUrl(message).videoId}`}
+                    frameborder="0" 
+                    allow="accelerometer; 
+                    autoplay; 
+                    encrypted-media; 
+                    gyroscope; 
+                    picture-in-picture" 
+                    allowfullscreen
+                    title="video"
+                    >
+                    </iframe>
+                    </div>
+                    )
+                    :
+                    <div className="message-container">      
+                        <span className="feed-post-message">{message}</span>
+                    </div>
+                }
                 <div className="feed-post-like-container">
                     <span className="feed-post-like" style={{color:red?"red":"black"}} onClick={handleLike}><i className="fa fa-heart"></i></span>
                     <span className="feed-post-like-count" style={{color:red?"red":"black"}}>{feed[id].likes.length}</span>
