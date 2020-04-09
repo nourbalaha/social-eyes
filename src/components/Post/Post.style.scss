@@ -65,6 +65,11 @@
         font-size: medium;
         display: flex;
         flex-direction: column;
+        .video-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         .message-container{
             display: flex;
             justify-content: center;

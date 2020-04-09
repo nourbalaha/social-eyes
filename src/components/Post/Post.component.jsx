@@ -5,6 +5,8 @@ import { withRouter} from 'react-router-dom';
 
 import { updatePost, deletePost, likePost, setPosts } from '../../redux/posts/posts.actions';
 
+import validateYoutubeUrl from '../../utils/validateYoutubeUrl';
+
 import './Post.style.scss';
 
 import Logo from '../../assets/avatar.png';
@@ -29,25 +31,25 @@ function Post({ id, onSetPosts, onDelete, onUpdate, onLike, match, history, post
     }
 
     const handleUpdate = (message) => {
-        const post = { "postId":id, message, author, likes, createdAt, userRef, current };
-        onUpdate(Object.assign({},post));
-        setTrigger(!trigger);
+      const post = { "postId":id, message, author, likes, createdAt, userRef, current };
+      onUpdate(Object.assign({},post));
+      setTrigger(!trigger);
     }
 
     const handleChange = event => {
-        setMsg(event.target.value)
+      setMsg(event.target.value)
     }
 
     const handleDelete = () => {
-        onDelete({id,userRef,current})
+      onDelete({id,userRef,current})
     }
 
     const handleLike = () => {
-        onLike({current, userRef, postId:id})
+      onLike({current, userRef, postId:id})
     }
 
     const handleLink = () => {
-        history.push(`/profile/${author}`)
+      history.push(`/profile/${author}`)
     }
 
     return (
@@ -64,10 +66,36 @@ function Post({ id, onSetPosts, onDelete, onUpdate, onLike, match, history, post
                 </div>
             </div>
             <div className="post-body">
-                <div className="message-container">
-                    <input className="post-message" type="text" value={msg} onChange={handleChange} style={{border:!trigger?"inset":"none"}} disabled={trigger}/>
-                    <button className="post-message-btn" onClick={()=>handleUpdate(msg)} style={{display:!trigger?"inline-block":"none"}}><i className="fa fa-check-circle"></i></button>
-                </div>
+            {
+                validateYoutubeUrl(msg).result
+                ?
+                (
+                    <div className="video-container">
+                        <iframe 
+                        width="640" 
+                        height="360" 
+                        src={`https://www.youtube.com/embed/${validateYoutubeUrl(msg).videoId}`}
+                        frameborder="0" 
+                        allow="accelerometer; 
+                        autoplay; 
+                        encrypted-media; 
+                        gyroscope; 
+                        picture-in-picture" 
+                        allowfullscreen
+                        title="video"
+                        >
+                        </iframe>
+                    </div>
+                )
+                :
+                (
+                    <div className="message-container">
+                        <input className="post-message" type="text" value={msg} onChange={handleChange} style={{border:!trigger?"inset":"none"}} disabled={trigger}/>
+                        <button className="post-message-btn" onClick={()=>handleUpdate(msg)} style={{display:!trigger?"inline-block":"none"}}><i className="fa fa-check-circle"></i></button>
+                    </div>
+                )
+
+            }
                 <div className="post-like-container">
                     <span className="post-like" style={{color:red?"red":"black"}} onClick={handleLike}><i className="fa fa-heart"></i></span>
                     <span className="post-like-count" style={{color:red?"red":"black"}}>{posts[id].likes.length}</span>
