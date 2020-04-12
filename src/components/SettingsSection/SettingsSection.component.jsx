@@ -10,6 +10,9 @@ import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import IconButton from '@material-ui/core/IconButton';
+
 
 import './SettingsSection.style.scss'
 
@@ -24,6 +27,8 @@ function SettingsSection({ user, onSetUser }) {
     setState({...state, [event.target.name]: event.target.value});
   };
 
+
+
   const handleApply = () => {
     onSetUser(state);
   };
@@ -33,6 +38,12 @@ function SettingsSection({ user, onSetUser }) {
       <form className="settings-section-form">
        <fieldset  className="settings-section-fieldset">
         <legend>PROFILE SETTINGS</legend>
+        <input accept="image/*" id="icon-button-file" type="file" style={{display:"none"}} />
+          <label htmlFor="icon-button-file">
+            <IconButton color="primary" aria-label="upload picture" component="span">
+              <PhotoCamera />
+            </IconButton>
+          </label>
           <TextField className="settings-section-userref" label="UserRef" value={state.userRef} name="userRef" onChange={handleChange} />
           <TextField className="settings-section-email" label="Email" value={state.email}  name="email" onChange={handleChange}  />
           <TextField
