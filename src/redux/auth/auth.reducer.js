@@ -1,6 +1,7 @@
 // Initial State
 const initial_state = {
-    currentUser: null
+    currentUser: null,
+    imageURL:null,
   }
   
   // Reducer
@@ -8,7 +9,13 @@ const initial_state = {
     switch (action.type) {
       case "ADD_USER":
         return {
+          ...initial_state,
           currentUser: action.payload
+        }
+      case "SET_IMAGE":
+        return {
+          ...initial_state,
+          imageURL: action.payload
         }
       default:
         return state;
