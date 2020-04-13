@@ -9,7 +9,7 @@ import { getUsers } from '../../redux/users/users.actions';
 
 import "./People.style.scss";
 
-function People({ users, onGetUsers }) {
+function People({ users, currentUser, onGetUsers }) {
     useEffect(()=>{
         onGetUsers()
     },[onGetUsers])
@@ -20,6 +20,7 @@ function People({ users, onGetUsers }) {
             <div className="persons-container">
                 {
                 Object.keys(users)
+                .filter(user=>user!==currentUser.displayName)
                 .map(user=>(
                         <Person key={users[user].id} userRef={user} />
                     ))
@@ -32,6 +33,7 @@ function People({ users, onGetUsers }) {
 function mapState (state) {
     return { 
         users: state.users,
+        currentUser: state.auth.currentUser,
     }
 }
 
