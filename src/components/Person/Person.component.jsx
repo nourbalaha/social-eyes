@@ -12,7 +12,7 @@ import "./Person.style.scss";
 function Person({ users, onGetUsers, userRef, history }) {
     return (
         <div className="person-container" key={users[userRef]["id"]}>
-            <img className="person-image" src={avatar} alt="avatar" />
+            <img className="person-image" src={users[userRef]["photoURL"]?users[userRef]["photoURL"]:avatar} alt="avatar" />
             <span className="person-name" onClick={()=>history.push(`/profile/${userRef}`)}>{userRef}</span>
         </div>
     )
