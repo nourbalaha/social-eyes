@@ -13,15 +13,15 @@ import Logo from '../../assets/avatar.png';
 
 import moment from "moment";
 
-function Post({ id, onSetPosts, onDelete, onUpdate, onLike, match, history, posts, currentUser }) {
+function Post({ id, onSetPosts, onDelete, onUpdate, onLike, match, history, posts, currentUser, user, users }) {
     const userRef = match.params.userref;
     const author = posts[id]["author"];
     const current = currentUser.displayName;
     const message = posts[id]["message"];
     const likes = posts[id]["likes"];
+    const photoURL = users[author]["photoURL"];
     const createdAt = posts[id]["createdAt"]; 
     let fromNow = moment(createdAt).fromNow();
-
     const red = likes.includes(current)?true:false;
     const [trigger, setTrigger] = useState(true);
     const [msg, setMsg] = useState(message);
@@ -56,7 +56,7 @@ function Post({ id, onSetPosts, onDelete, onUpdate, onLike, match, history, post
         <div className="post">
             <div className="post-title">
                 <div className="post-user-container">
-                    <img className="post-title-icon" src={Logo} alt="post-title-icon" />
+                    <img className="post-title-icon" src={photoURL?photoURL:Logo} alt="post-title-icon" />
                     <span className="post-title-username" onClick={handleLink}>{author}</span>
                 </div>
                 <div className="post-title-config">
@@ -110,6 +110,8 @@ const mapState = state => {
     return {
         currentUser: state.auth.currentUser,
         posts: state.posts,
+        user: state.user,
+        users: state.users,
     }
 }
 
