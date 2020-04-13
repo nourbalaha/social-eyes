@@ -9,6 +9,7 @@ const initial_state = {
     followers:[],
     following:[],
     openProfile:true,
+    photoURL: null,
 };
   
 // Reducer
@@ -21,6 +22,12 @@ function userReducer(state = initial_state, action) {
         case "SET_USER_DATA":
             const newSetState = action.payload;
             return newSetState;
+
+        case "SET_IMAGE":
+            return {
+                ...initial_state,
+                photoURL: action.payload
+            }
 
         default:
             return state;
