@@ -20,7 +20,7 @@ function UserProfile({ match, user, currentUser, posts, onGetUserData }) {
 
     return (
         <div className="profile-page-left-container">
-            <img className="profile-page-left-image" src={Avatar} alt="profile-pic" />
+            <img className="profile-page-left-image" src={user.photoURL?user.photoURL:Avatar} alt="profile-pic" />
             <span className="profile-page-left-user-ref">{user.userRef}</span>
             <span className="profile-page-left-description">{user.description}</span>
             <div className="profile-page-left-posts-likes-container">
