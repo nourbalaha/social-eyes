@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { setUserData } from '../../redux/user/user.actions'
+import { setImage } from '../../redux/user/user.actions'
 
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -13,21 +14,23 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 
-
 import './SettingsSection.style.scss'
 
-function SettingsSection({ user, onSetUser }) {
+function SettingsSection({ user, onSetUser, onSetImage, currentUser }) {
   const [state, setState] = useState(user);
 
   const handleSwitch = (event) => {
     setState({...state, openProfile: event.target.checked});
   };
-
+  
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value});
   };
 
-
+  const handleImage = async (event) => {
+    const file = event.target.files[0];
+    await onSetImage(file);
+  };
 
   const handleApply = () => {
     onSetUser(state);
@@ -38,8 +41,9 @@ function SettingsSection({ user, onSetUser }) {
       <form className="settings-section-form">
        <fieldset  className="settings-section-fieldset">
         <legend>PROFILE SETTINGS</legend>
-        <input accept="image/*" id="icon-button-file" type="file" style={{display:"none"}} />
+        <input accept="image/*" id="icon-button-file" type="file" onChange={handleImage} style={{display:"none"}} />
           <label htmlFor="icon-button-file">
+            Profile Image: 
             <IconButton color="primary" aria-label="upload picture" component="span">
               <PhotoCamera />
             </IconButton>
@@ -80,6 +84,7 @@ function SettingsSection({ user, onSetUser }) {
 
 function mapState (state) {
   return { 
+    currentUser: state.auth.currentUser,
     user: state.user,
   }
 }
@@ -88,7 +93,10 @@ const mapDispatch = dispatch => {
   return {
     onSetUser(user) {
       dispatch(setUserData(user));
-    }
+    },
+    onSetImage(file) {
+      dispatch(setImage(file));
+    },
   }
 }
 
