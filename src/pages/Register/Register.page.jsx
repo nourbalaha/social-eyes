@@ -44,6 +44,7 @@ function Register({ history }) {
                 data.following= [];
                 data.likes= [];
                 data.posts= {};
+                data.photoURL= null;
             await userRef.set(data);
           } catch(error) {
             console.log({msg:error.message, type: "error"})
