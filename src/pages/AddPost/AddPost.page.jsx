@@ -2,6 +2,7 @@ import React from 'react';
 
 import './AddPost.style.scss';
 
+import UserInput from '../../components/UserInput/UserInput.component';
 import UserProfile from '../../components/UserProfile/UserProfile.component';
 
 function AddPost() {
@@ -12,7 +13,7 @@ function AddPost() {
             </div>
 
             <div className="add-post-page-right">
-                Right Section
+                <UserInput />
             </div>
         </div>
     )
