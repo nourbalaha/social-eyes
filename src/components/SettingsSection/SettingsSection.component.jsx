@@ -18,6 +18,7 @@ import './SettingsSection.style.scss'
 
 function SettingsSection({ user, onSetUser, onSetImage, currentUser }) {
   const [state, setState] = useState(user);
+  const [file, setFile] = useState(null);
 
   const handleSwitch = (event) => {
     setState({...state, openProfile: event.target.checked});
@@ -27,13 +28,15 @@ function SettingsSection({ user, onSetUser, onSetImage, currentUser }) {
     setState({...state, [event.target.name]: event.target.value});
   };
 
-  const handleImage = async (event) => {
-    const file = event.target.files[0];
-    await onSetImage(file);
+  const handleImage = (event) => {
+    setFile(event.target.files[0])
   };
 
-  const handleApply = () => {
+  const handleApply = async () => {
     onSetUser(state);
+    if(file) {
+      await onSetImage(file);
+    }
   };
 
   return (
@@ -47,6 +50,7 @@ function SettingsSection({ user, onSetUser, onSetImage, currentUser }) {
             <IconButton color="primary" aria-label="upload picture" component="span">
               <PhotoCamera />
             </IconButton>
+            <span>{file&&file.name}</span>
           </label>
           <TextField className="settings-section-userref" label="UserRef" value={state.userRef} name="userRef" onChange={handleChange} />
           <TextField className="settings-section-email" label="Email" value={state.email}  name="email" onChange={handleChange}  />
