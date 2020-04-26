@@ -13,13 +13,14 @@ import Logo from '../../assets/avatar.png';
 
 import moment from "moment";
 
-function FeedPost({ id, onLike, match, history, feed, currentUser }) {
+function FeedPost({ id, onLike, match, history, feed, users, currentUser }) {
     const author = feed[id]["author"];
     const userRef = feed[id]["userRef"];
     const current = currentUser.displayName;
     const message = feed[id]["message"];
     const likes = feed[id]["likes"];
     const createdAt = feed[id]["createdAt"]; 
+    const photoURL = users[author]["photoURL"];
     let fromNow = moment(createdAt).fromNow();
 
     const red = likes.includes(current)?true:false;
@@ -36,7 +37,7 @@ function FeedPost({ id, onLike, match, history, feed, currentUser }) {
         <div className="feed-post">
             <div className="feed-post-title">
                 <div className="feed-post-user-container">
-                    <img className="feed-post-title-icon" src={Logo} alt="feed-post-title-icon" />
+                    <img className="feed-post-title-icon" src={photoURL?photoURL:Logo} alt="feed-post-title-icon" />
                     <span className="feed-post-title-username" onClick={()=>handleLink(author)}>{author}</span>
                     {
                         author!==userRef && <span className="feed-post-title-seperator">{">"}</span>
@@ -90,6 +91,7 @@ const mapState = state => {
     return {
         currentUser: state.auth.currentUser,
         feed: state.feed,
+        users: state.users,
     }
 }
 
