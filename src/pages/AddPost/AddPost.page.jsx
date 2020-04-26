@@ -13,7 +13,7 @@ function AddPost() {
             </div>
 
             <div className="add-post-page-right">
-                <UserInput />
+                <UserInput user="current" />
             </div>
         </div>
     )

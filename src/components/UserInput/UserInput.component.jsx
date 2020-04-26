@@ -8,16 +8,17 @@ import { addPost } from '../../redux/posts/posts.actions';
 import './UserInput.style.scss';
 import avatar from '../../assets/avatar.png';
 
-function UserInput({ onSubmit, match, currentUser }) {
+function UserInput({ onSubmit, match, currentUser, user }) {
   const [input, setInput] = useState("");
+
+  const userRef = user==="current"?currentUser.displayName:match.params.userref;
 
   const handleChange = event => {
     setInput(event.target.value)
   }
 
   const handleSubmit = () => {
-    console.log(currentUser.displayName)
-    onSubmit({message:input,author:currentUser.displayName,userRef:match.params.userref});
+    onSubmit({ message:input, author:currentUser.displayName, userRef });
     setInput("")
   }
     return (
