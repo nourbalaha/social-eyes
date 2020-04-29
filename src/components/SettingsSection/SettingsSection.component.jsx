@@ -16,7 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import './SettingsSection.style.scss'
 
-function SettingsSection({ user, onSetUser, onSetImage, currentUser }) {
+function SettingsSection({ user, onSetUser, onSetImage, currentUser, history }) {
   const [state, setState] = useState(user);
   const [file, setFile] = useState(null);
 
@@ -37,6 +37,7 @@ function SettingsSection({ user, onSetUser, onSetImage, currentUser }) {
     if(file) {
       await onSetImage(file);
     }
+    history.push("/")
   };
 
   return (
