@@ -52,7 +52,6 @@ function SettingsSection({ user, onSetUser, onSetImage, currentUser }) {
             </IconButton>
             <span>{file&&file.name}</span>
           </label>
-          <TextField className="settings-section-userref" label="UserRef" value={state.userRef} name="userRef" onChange={handleChange} />
           <TextField className="settings-section-email" label="Email" value={state.email}  name="email" onChange={handleChange}  />
           <TextField
           className="settings-section-description" 
