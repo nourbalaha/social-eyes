@@ -1,7 +1,22 @@
 .app{
   display: flex;
+  flex-direction: column;
   height: 100vh;
   font-family: 'Raleway', sans-serif;
+
+  .app-header{
+    justify-self: center;
+    align-self: center;
+    position: absolute;
+    top: 20px;
+    right: 90px;
+    .flash-msg-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
 
   .main{
     flex: 1;
