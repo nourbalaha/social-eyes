@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
 import './Login.style.scss';
 
@@ -6,7 +7,7 @@ import Logo from '../../assets/owl.png';
 
 import { auth } from '../../firebase/firebase.config';
 
-function Login ({ history }) {
+function Login ({ history, addFlashMsg }) {
   const [user, setUser] = useState({
     email: '',
     password: ''
@@ -25,12 +26,16 @@ function Login ({ history }) {
     if (user.email.length > 0 && user.password.length > 0) {
       try {
         await auth.signInWithEmailAndPassword(user.email, user.password)
+        addFlashMsg({
+          msg: 'You Have Been Logged In Successfully!',
+          type: 'success'
+        })
       } catch (error) {
-        console.log(error.message)
+        addFlashMsg({ msg: error.message, type: 'error' })
       }
       history.push('/home')
     } else {
-      console.log('please enter required field')
+      addFlashMsg({ msg: 'please enter required field', type: 'error' })
     }
   }
 
@@ -68,4 +73,18 @@ function Login ({ history }) {
   )
 }
 
-export default Login
+function mapState(state) {
+  return { 
+    messages: state.flash.messages,
+  };
+}
+
+function mapDispatch (dispatch) {
+  return {
+    addFlashMsg(payload){
+      dispatch({type:"ADD_MSG", payload})
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(Login)
