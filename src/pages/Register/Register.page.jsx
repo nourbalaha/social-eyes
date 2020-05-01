@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
 import './Register.style.scss';
 
@@ -6,7 +7,7 @@ import Logo from '../../assets/owl.png';
 
 import { auth, firestore } from '../../firebase/firebase.config';
 
-function Register({ history }) {
+function Register({ history, addFlashMsg }) {
 
     const [ user, setUser ] = useState({
         userRef:"",
@@ -46,12 +47,13 @@ function Register({ history }) {
                 data.posts= {};
                 data.photoURL= null;
             await userRef.set(data);
+            addFlashMsg({msg:"User Registration Successful!", type: "success"})
           } catch(error) {
-            console.log({msg:error.message, type: "error"})
+            addFlashMsg({msg:error.message, type: "error"})
           };
           history.push("/home")
         } else {
-          console.log({msg:"please enter required field", type: "error"})
+          addFlashMsg({msg:"please enter required field", type: "error"})
         }
       }
 
@@ -103,4 +105,12 @@ function Register({ history }) {
     )
 }
 
-export default Register
+const mapDispatch = dispatch => {
+  return {
+    addFlashMsg(payload){
+      dispatch({type:"ADD_MSG", payload})
+    }
+  }
+}
+
+export default connect(null, mapDispatch)(Register);
