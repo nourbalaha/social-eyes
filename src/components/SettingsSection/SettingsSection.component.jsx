@@ -16,7 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import './SettingsSection.style.scss'
 
-function SettingsSection({ user, onSetUser, onSetImage, currentUser, history }) {
+function SettingsSection({ user, onSetUser, onSetImage, currentUser, history, addFlashMsg }) {
   const [state, setState] = useState(user);
   const [file, setFile] = useState(null);
 
@@ -33,11 +33,16 @@ function SettingsSection({ user, onSetUser, onSetImage, currentUser, history }) 
   };
 
   const handleApply = async () => {
-    onSetUser(state);
-    if(file) {
-      await onSetImage(file);
+    try {
+      onSetUser(state);
+      if(file) {
+        await onSetImage(file);
+      }
+      addFlashMsg({msg:"profile updated successfully", type: "success"})
+      history.push("/")    
+    } catch (error) {
+      addFlashMsg({msg:"something went wrong", type: "error"})
     }
-    history.push("/")
   };
 
   return (
@@ -100,6 +105,9 @@ const mapDispatch = dispatch => {
     },
     onSetImage(file) {
       dispatch(setImage(file));
+    },
+    addFlashMsg(payload){
+      dispatch({type:"ADD_MSG", payload})
     },
   }
 }
