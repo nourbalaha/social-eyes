@@ -8,15 +8,15 @@ import './Navbar.style.scss';
 
 import Owl from '../../assets/owl.png';
 
-function Navbar({ history, currentUser }) {
+function Navbar({ history, currentUser, addFlashMsg }) {
     const userRef = currentUser.displayName;
 
     const handleSignout = async () => {
         try {
           await auth.signOut();
-          console.log({ msg:"You Have Been Logged Out Succefully!", type: "success" })
+          addFlashMsg({ msg:"You Have Been Logged Out Succefully!", type: "success" })
         } catch(error) {
-          console.log({ msg:error.message, type: "error" })
+          addFlashMsg({ msg:error.message, type: "error" })
         };
       };
 
@@ -41,5 +41,12 @@ function mapState (state) {
   }
 }
 
-// Connect them:
-export default compose(withRouter, connect(mapState))(Navbar)
+function mapDispatch(dispatch){
+  return {
+    addFlashMsg(payload){
+      dispatch({type:"ADD_MSG", payload})
+    }
+  }
+}
+
+export default compose(withRouter, connect(mapState, mapDispatch))(Navbar)
