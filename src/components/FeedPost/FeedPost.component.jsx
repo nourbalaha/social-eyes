@@ -56,9 +56,7 @@ function FeedPost({ id, onLike, match, history, feed, users, currentUser }) {
                 ?
                 (
                     <div className="video-container">
-                    <iframe 
-                    width="640" 
-                    height="360" 
+                    <iframe className="video"
                     src={`https://www.youtube.com/embed/${validateYoutubeUrl(message).videoId}`}
                     frameborder="0" 
                     allow="accelerometer; 
