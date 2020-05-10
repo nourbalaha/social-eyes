@@ -1,8 +1,8 @@
 .feed-post{
     border-radius: 10px;
     padding: 20px;
-    margin: 25px 0;
-    width: 50vw;
+    margin: 10px 0;
+    width: 500px;
     box-shadow: 0px 10px 20px -9px rgba(0,0,0,.2);
     border: 0.5px solid #EEEEEE;
 
@@ -48,8 +48,7 @@
         }
     }
     .feed-post-body{
-        margin-top: 20px;
-        margin-left: 25px;
+        margin: 20px 25px;
         font-size: medium;
         display: flex;
         flex-direction: column;
@@ -57,6 +56,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            .video{
+                flex:1;
+                height: 25vh;
+            }
         }
         .message-container{
             display: flex;
@@ -88,6 +91,20 @@
             .feed-post-like-count{
                 color: #FF0000;
                 padding: 5px;
+            }
+        }
+    }
+
+    @media screen and (max-width:900px){
+        width:80vw;
+    }
+    @media screen and (max-width:320px){
+        .feed-post-body{
+            .video-container{
+                .video{
+                    width: 240px;
+                    height: 20vh;
+                }
             }
         }
     }
