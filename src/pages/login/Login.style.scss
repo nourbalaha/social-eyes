@@ -68,4 +68,36 @@
             text-decoration: underline;
         }
     }
+    @media screen and (max-width:414px) {
+        justify-content: flex-start;
+        align-items: center;
+        .login-container{
+            height: 100vh;
+            width: 100vw;
+            .login-image{
+                width: 150px;
+                height: 150px;
+                padding: 40px;
+            }
+            .login-email{
+                margin: 5px 0;
+                padding: 5px 20px;
+                font-size: 16px;
+            }
+            .login-password{
+                margin: 5px 0;
+                padding: 5px 20px;
+                font-size: 16px;
+            }
+            .login-button{
+                margin: 5px 0;
+                padding: 5px 15px;
+                font-size: 16px;
+            }
+            .login-text{
+                margin-top: 20px;
+                font-size: 14px;
+            }
+        }
+    }
 }
