@@ -77,4 +77,47 @@
             text-decoration: underline;
         }
     }
+
+    @media screen and (max-width:414px) {
+        justify-content: flex-start;
+        align-items: center;
+        .register-container{
+            height: 100vh;
+            width: 100vw;
+            .register-image{
+                width: 150px;
+                height: 150px;
+                padding: 40px;
+            }
+            .register-email{
+                margin: 5px 0;
+                padding: 5px 20px;
+                font-size: 16px;
+            }
+            .register-password{
+                margin: 5px 0;
+                padding: 5px 20px;
+                font-size: 16px;
+            }
+            .register-user-ref{
+                margin: 5px 0;
+                padding: 5px 20px;
+                font-size: 16px;
+            }
+            .register-description{
+                margin: 5px 0;
+                padding: 5px 20px;
+                font-size: 16px;
+            }
+            .register-button{
+                margin: 5px 0;
+                padding: 5px 15px;
+                font-size: 16px;
+            }
+            .register-text{
+                margin-top: 20px;
+                font-size: 14px;
+            }
+        }
+    }
 }
