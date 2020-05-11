@@ -31,6 +31,10 @@ $error-color:#CB373B;
     .msg-close{
         color: $error-color
     }
+    @media screen and (max-width:414px){
+        opacity: 1;
+        width: 300px;
+    }
 }
 .success{
     background-color: $success-bgcolor;
@@ -43,6 +47,6 @@ $error-color:#CB373B;
     }
     @media screen and (max-width:414px){
         opacity: 1;
-        top:0;
+        width: 300px;
     }
 }
