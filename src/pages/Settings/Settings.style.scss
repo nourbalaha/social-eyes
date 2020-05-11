@@ -32,4 +32,16 @@
             padding: 0 25px;
         }
     }
+    @media screen and (max-width:900px){
+        flex-direction: column;
+            .settings-page-right{
+                margin-left: 0;
+                margin-top: 75px;
+                justify-self: center;
+                align-self: center;
+            }
+            .settings-page-left{
+                display: none;
+            }
+        }
   }

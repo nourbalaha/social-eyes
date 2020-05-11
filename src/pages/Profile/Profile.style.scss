@@ -9,20 +9,34 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-left: 350px;
+        margin-left: 250px;
     }
     .profile-page-left{
         position: fixed;
         left: 0;
-        width: 350px;
+        width: 250px;
         height: 100vh;
-        background-color: #F8F9FA;
-        background-image: url("../../assets/background.jpg");
-        background-position: center;
-        background-size: cover;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
+        background-color: #F8F9FA;
+        background-image: url("../../assets/background.jpg");
+        background-position: center;
+        background-size: cover;
     }
+    @media screen and (max-width:900px){
+        flex-direction: column;
+        align-items: center;
+            .profile-page-right{
+                margin-left: 0;
+            }
+            .profile-page-left{
+                position: static;
+                margin-top: 75px;
+                padding-bottom: 20px;
+                width: 100%;
+                height: 50%;
+            }
+        }
   }

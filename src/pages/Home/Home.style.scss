@@ -9,12 +9,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-left: 350px;
+        margin-left: 250px;
     }
     .home-page-left{
         position: fixed;
         left: 0;
-        width: 350px;
+        width: 250px;
         height: 100vh;
         background-color: #F8F9FA;
         background-image: url("../../assets/background.jpg");
@@ -31,6 +31,15 @@
             justify-content: center;
             align-items: flex-start;
             padding: 0 25px;
+        }
+    }
+    @media screen and (max-width:900px){
+        .home-page-right{
+            margin-left: 0;
+            margin-top: 75px;
+        }
+        .home-page-left{
+            display: none;
         }
     }
   }
