@@ -1,7 +1,7 @@
 # Welcome to SocialEyes
 SocialEyes is a social app that allow you to connect with people all over the world.
 
-![image](src/assets/SocialEyes.png)
+![image](src/assets/social-eyes.gif)
 
 ## About SocialEyes:
 * Welcome to SocialEyes github repo.
