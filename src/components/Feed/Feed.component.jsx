@@ -4,15 +4,17 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { getFeed } from '../../redux/feed/feed.actions'
+import { getUsers } from '../../redux/users/users.actions';
 
 import FeedPost from '../FeedPost/FeedPost.component'
 
 import './Feed.style.scss'
 
-function Feed({ match, onGetFeed, feed }) {
+function Feed({ match, onGetFeed,onGetUsers, feed }) {
   useEffect(()=>{
       onGetFeed();
-  },[onGetFeed])
+      onGetUsers()
+  },[onGetFeed,onGetUsers])
 
   const newPosts = feed;
   const keys = Object.keys(newPosts);
@@ -42,7 +44,10 @@ const mapDispatch = dispatch => {
   return {
     onGetFeed() {
       dispatch(getFeed());
-    }
+    },
+    onGetUsers() {
+      dispatch(getUsers())
+    },
   }
 }
 

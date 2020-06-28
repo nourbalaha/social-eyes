@@ -4,13 +4,15 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { setPosts } from '../../redux/posts/posts.actions'
+import { getUsers } from '../../redux/users/users.actions';
 
 import Post from '../Post/Post.component'
 
-function Posts({ match, onSetPosts, posts }) {
+function Posts({ match, onSetPosts, onGetUsers, posts }) {
   useEffect(()=>{
       onSetPosts(match.params.userref);
-  },[match.params.userref, onSetPosts])
+      onGetUsers();
+  },[match.params.userref, onSetPosts,onGetUsers])
 
   const newPosts = posts;
   const keys = Object.keys(newPosts);
@@ -40,7 +42,10 @@ const mapDispatch = dispatch => {
   return {
     onSetPosts(userRef) {
       dispatch(setPosts(userRef))
-    }
+    },
+    onGetUsers() {
+      dispatch(getUsers())
+    },
   }
 }
 
